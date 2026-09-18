@@ -29,8 +29,6 @@ Risk Classification
 Dashboard Visualization
     ↓
 Alert & Suggested Solution
-## Screenshots
-Add screenshots of the Home, Dashboard and Analysis pages here.
 ## Future Enhancements
 - Real-time packet capture
 - Machine learning based anomaly detection
