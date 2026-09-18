@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shadow Traffic Analyser</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>🔍 Shadow Traffic Analyser</h1>
+  <p>Hidden Traffic Detection Made Simple</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="analysis.html">Analysis</a>
+</nav>
+
+<section class="container">
+  <h2>Network Traffic </h2>
+  <p>Please enter the following details to analyse the traffic</p>
+
+  <form id="trafficForm">
+
+    <!-- Network Type -->
+    <select required>
+      <option value="">Select Network Type</option>
+      <option>Wi-Fi</option>
+      <option>Mobile Data</option>
+      <option>LAN</option>
+      <option>Public Network</option>
+    </select>
+
+    <!-- Device Type -->
+    <select required>
+      <option value="">Select Device Type</option>
+      <option>Mobile</option>
+      <option>Laptop</option>
+      <option>Desktop</option>
+      <option>IoT Device</option>
+    </select>
+
+    <!-- Activity Type -->
+    <select required>
+      <option value="">Activity Type</option>
+      <option>Browsing</option>
+      <option>Streaming</option>
+      <option>Gaming</option>
+      <option>File Download</option>
+      <option>Unknown Background Activity</option>
+    </select>
+
+    <!-- Duration -->
+    <select required>
+      <option value="">Monitoring Duration</option>
+      <option>5 Minutes</option>
+      <option>15 Minutes</option>
+      <option>30 Minutes</option>
+      <option>1 Hour</option>
+    </select>
+
+    <button type="submit">Start Traffic Analysis</button>
+  </form>
+
+</section>
+<script>
+document.getElementById("trafficForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+        network: document.querySelectorAll("select")[0].value,
+        device: document.querySelectorAll("select")[1].value,
+        activity: document.querySelectorAll("select")[2].value,
+        duration: document.querySelectorAll("select")[3].value
+    };
+
+    localStorage.setItem("trafficData", JSON.stringify(data));
+
+    window.location.href = "analysis.html";
+});
+</script>
+
+</body>
+</html>

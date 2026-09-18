@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shadow Traffic Analyser</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Shadow Traffic Analyser</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a> | 
+    <a href="dashboard.html">Dashboard</a> | 
+    <a href="analysis.html">Analysis</a>
+</nav>
+
+<!-- HIGH RISK ALERT -->
+<div id="riskAlert" style="display:none; text-align:center; padding:10px; margin:10px auto; max-width:600px; border-left:5px solid #ff1744; background:#220000; color:#ff1744; font-weight:bold;">
+    ⚠️ HIGH SHADOW TRAFFIC DETECTED!
+</div>
+
+<!-- TOTAL TRAFFIC MINI CARD -->
+<div class="mini-cards">
+    <div class="card" id="totalTrafficCard">
+        <h3>Total Traffic</h3>
+        <p id="totalTrafficValue">Calculating...</p>
+    </div>
+</div>
+
+<!-- ANALYSIS SECTION -->
+<section class="charts">
+
+    <!-- TEXTUAL ANALYSIS RESULT -->
+    <div class="analysis-text">
+        <h3>Analysis Result</h3>
+        <p id="resultText"></p>
+    </div>
+
+    <!-- LINE CHART -->
+    <div class="chart-box">
+        <canvas id="trafficChart"></canvas>
+    </div>
+
+    <!-- TRAFFIC PROGRESS BARS -->
+    <div class="traffic-bars" id="trafficBars"></div>
+
+    <!-- SUGGESTIONS / SOLUTIONS -->
+    <div class="traffic-solution" id="trafficSolution" style="display:none; max-width:600px; margin:20px auto; background:#1a1a1a; color:#00eaff; padding:15px; border-left:5px solid #00eaff;">
+        <h3>Suggested Actions</h3>
+        <ul id="solutionList"></ul>
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>

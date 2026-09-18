@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Shadow Traffic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>📊 Network Dashboard</h1>
+  <p>Live Traffic Monitoring</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="analysis.html">Analysis</a>
+</nav>
+
+<section class="dashboard">
+
+  <div class="card" id="activeTrafficCard">
+    <h3>Active Traffic</h3>
+    <p id="activeTrafficValue">0 Packets</p>
+  </div>
+
+  <div class="card" id="shadowTrafficCard">
+    <h3>Shadow Traffic</h3>
+    <p id="shadowTrafficValue">0 Packets</p>
+  </div>
+
+  <div class="card" id="totalTrafficCard">
+    <h3>Total Traffic</h3>
+    <p id="totalTrafficValue">0 Packets</p>
+  </div>
+
+  <div class="card" id="deviceStatusCard">
+    <h3>Device Status</h3>
+    <p id="deviceStatusValue">Checking...</p>
+  </div>
+
+</section>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>

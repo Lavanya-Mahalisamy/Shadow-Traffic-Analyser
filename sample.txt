@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - Shadow Traffic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>📊 Network Dashboard</h1>
+  <p>Live Traffic Monitoring</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="analysis.html">Analysis</a>
+</nav>
+
+<section class="dashboard">
+
+  <div class="card">
+    <h3>Total Traffic</h3>
+    <p>15,200 Packets</p>
+  </div>
+
+  <div class="card red">
+    <h3>Shadow Traffic</h3>
+    <p>4,120 Packets</p>
+  </div>
+
+  <div class="card yellow">
+    <h3>Threat Level</h3>
+    <p>HIGH</p>
+  </div>
+
+  <div class="card">
+    <h3>Active IPs</h3>
+    <p>143</p>
+  </div>
+
+</section>
+
+</body>
+</html>

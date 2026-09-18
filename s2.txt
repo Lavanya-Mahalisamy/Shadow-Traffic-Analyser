@@ -1,0 +1,54 @@
+// ===== 1. Read input from Home page =====
+const data = JSON.parse(localStorage.getItem("trafficData"));
+
+// Default values
+let activeTraffic = 0;
+let shadowTraffic = 0;
+let totalTraffic = 0;
+let deviceStatus = "Normal";
+
+if(data){
+    // Internal scoring
+    const networkScore = data.network === "Public Network" ? 5 : data.network === "Mobile Data" ? 3 : 2;
+    const activityScore = data.activity === "Unknown Background Activity" ? 6 : data.activity === "Gaming" ? 4 : data.activity === "Streaming" ? 3 : 1;
+
+    // Calculate traffic values
+    activeTraffic = networkScore * 20;     // simulate active traffic packets
+    shadowTraffic = activityScore * 15;    // simulate shadow traffic packets
+    totalTraffic = activeTraffic + shadowTraffic;
+
+    // Determine device status
+    deviceStatus = (shadowTraffic > 80 || totalTraffic > 100) ? "RISKY" : "Normal";
+}
+
+// ===== 2. Update HTML =====
+document.getElementById("activeTrafficValue").innerText = activeTraffic + " Packets";
+document.getElementById("shadowTrafficValue").innerText = shadowTraffic + " Packets";
+document.getElementById("totalTrafficValue").innerText = totalTraffic + " Packets";
+document.getElementById("deviceStatusValue").innerText = deviceStatus;
+
+// ===== 3. Color coding =====
+const statusCard = document.getElementById("deviceStatusCard");
+if(deviceStatus === "Normal"){
+    statusCard.classList.add("green");
+} else {
+    statusCard.classList.add("red");
+}
+
+// Optional: color code total traffic
+const totalCard = document.getElementById("totalTrafficCard");
+if(totalTraffic > 100){
+    totalCard.classList.add("red");
+} else {
+    totalCard.classList.add("green");
+}
+
+// Shadow traffic card color
+const shadowCard = document.getElementById("shadowTrafficCard");
+if(shadowTraffic > 80){
+    shadowCard.classList.add("red");
+} else if(shadowTraffic > 50){
+    shadowCard.classList.add("yellow");
+} else {
+    shadowCard.classList.add("green");
+}
