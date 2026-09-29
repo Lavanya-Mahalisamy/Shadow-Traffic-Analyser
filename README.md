@@ -36,3 +36,10 @@ Alert & Suggested Solution
 - Machine learning based anomaly detection
 - Backend database integration
 - Advanced network threat detection
+## Screenshots
+### Home Page
+![Home Page](main.png)
+### Dashboard
+![Dashboard](Dashboard.png)
+### Analysis
+![Analysis](analysis.png)
