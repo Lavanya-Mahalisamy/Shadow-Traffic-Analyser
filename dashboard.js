@@ -1,43 +1,139 @@
-// ===== 1. Read analysis result and Home input =====
-let result = JSON.parse(localStorage.getItem("analysisResult"));
-const data = JSON.parse(localStorage.getItem("trafficData"));
+// ===== Read saved analysis result =====
+const result = JSON.parse(localStorage.getItem("analysisResult"));
 
-// ===== 2. If no analysisResult, calculate based on Home input =====
-if(!result && data){
-    const networkScore = data.network === "Public Network" ? 5 : data.network === "Mobile Data" ? 3 : 2;
-    const activityScore = data.activity === "Unknown Background Activity" ? 6 : data.activity === "Gaming" ? 4 : data.activity === "Streaming" ? 3 : 1;
-    const riskValue = networkScore + activityScore;
 
-    const shadowTraffic = riskValue * 100;
-    const activeTraffic = networkScore * 20;
-    const totalTraffic = shadowTraffic + activeTraffic;
-    const riskLevel = riskValue >= 9 ? "HIGH" : riskValue >=6 ? "MEDIUM" : "LOW";
+// ===== If no result is available =====
+if (!result) {
 
-    result = { activeTraffic, shadowTraffic, totalTraffic, riskLevel };
-}
+    document.getElementById("activeTrafficValue").innerText =
+        "0 Packets";
 
-// ===== 3. Update dashboard cards =====
-if(result){
-    document.getElementById("activeTrafficValue").innerText = result.activeTraffic + " Packets";
-    document.getElementById("shadowTrafficValue").innerText = result.shadowTraffic + " Packets";
-    document.getElementById("totalTrafficValue").innerText = result.totalTraffic + " Packets";
-    document.getElementById("deviceStatusValue").innerText = (result.riskLevel==="HIGH") ? "RISKY" : "Normal";
+    document.getElementById("shadowTrafficValue").innerText =
+        "0 Packets";
 
-    // Color coding
-    const statusCard = document.getElementById("deviceStatusCard");
-    if(result.riskLevel === "HIGH") statusCard.classList.add("red");
-    else statusCard.classList.add("green");
+    document.getElementById("totalTrafficValue").innerText =
+        "0 Packets";
 
-    const shadowCard = document.getElementById("shadowTrafficCard");
-    if(result.shadowTraffic > 80) shadowCard.classList.add("red");
-    else if(result.shadowTraffic > 50) shadowCard.classList.add("yellow");
-    else shadowCard.classList.add("green");
+    document.getElementById("deviceStatusValue").innerText =
+        "No Data";
 
-    const totalCard = document.getElementById("totalTrafficCard");
-    if(result.totalTraffic > 100) totalCard.classList.add("red");
-    else totalCard.classList.add("green");
+} else {
 
-    const activeCard = document.getElementById("activeTrafficCard");
-    if(result.activeTraffic > 50) activeCard.classList.add("yellow");
-    else activeCard.classList.add("green");
+    // ===== Display values =====
+
+    document.getElementById("activeTrafficValue").innerText =
+        result.activeTraffic + " Packets";
+
+    document.getElementById("shadowTrafficValue").innerText =
+        result.shadowTraffic + " Packets";
+
+    document.getElementById("totalTrafficValue").innerText =
+        result.totalTraffic + " Packets";
+
+
+    // ===== Device Status =====
+
+    if (result.riskLevel === "HIGH") {
+
+        document.getElementById("deviceStatusValue").innerText =
+            "RISKY";
+
+    } else if (result.riskLevel === "MEDIUM") {
+
+        document.getElementById("deviceStatusValue").innerText =
+            "WARNING";
+
+    } else {
+
+        document.getElementById("deviceStatusValue").innerText =
+            "NORMAL";
+
+    }
+
+
+    // ===== Card references =====
+
+    const activeCard =
+        document.getElementById("activeTrafficCard");
+
+    const shadowCard =
+        document.getElementById("shadowTrafficCard");
+
+    const totalCard =
+        document.getElementById("totalTrafficCard");
+
+    const statusCard =
+        document.getElementById("deviceStatusCard");
+
+
+    // ===== Remove old colours =====
+
+    activeCard.classList.remove("green", "yellow", "red");
+
+    shadowCard.classList.remove("green", "yellow", "red");
+
+    totalCard.classList.remove("green", "yellow", "red");
+
+    statusCard.classList.remove("green", "yellow", "red");
+
+
+    // ===== Active Traffic colour =====
+
+    if (result.activeTraffic > 50) {
+
+        activeCard.classList.add("yellow");
+
+    } else {
+
+        activeCard.classList.add("green");
+
+    }
+
+
+    // ===== Shadow Traffic colour =====
+
+    if (result.shadowTraffic > 80) {
+
+        shadowCard.classList.add("red");
+
+    } else if (result.shadowTraffic > 50) {
+
+        shadowCard.classList.add("yellow");
+
+    } else {
+
+        shadowCard.classList.add("green");
+
+    }
+
+
+    // ===== Total Traffic colour =====
+
+    if (result.totalTraffic > 100) {
+
+        totalCard.classList.add("red");
+
+    } else {
+
+        totalCard.classList.add("green");
+
+    }
+
+
+    // ===== Device Status colour =====
+
+    if (result.riskLevel === "HIGH") {
+
+        statusCard.classList.add("red");
+
+    } else if (result.riskLevel === "MEDIUM") {
+
+        statusCard.classList.add("yellow");
+
+    } else {
+
+        statusCard.classList.add("green");
+
+    }
+
 }
